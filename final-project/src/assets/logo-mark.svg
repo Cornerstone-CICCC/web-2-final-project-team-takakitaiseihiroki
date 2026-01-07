@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120" fill="none">
+  <!-- Black slanted shape (clipped by a circle to round the bottom-right edge) -->
+  <defs>
+    <!-- This circle clip creates the rounded bottom-right edge -->
+    <clipPath id="clipCircleBlack">
+      <circle cx="70" cy="60" r="36" />
+    </clipPath>
+
+    <!-- Teal is a circle clipped so the left side is flat -->
+    <clipPath id="clipTealSegment">
+      <rect x="58" y="0" width="62" height="120" />
+    </clipPath>
+  </defs>
+
+  <!-- Black slanted block -->
+  <g clip-path="url(#clipCircleBlack)">
+    <path
+      d="M20 98 L52 22 L66 28 L34 104 Z"
+      fill="#000000"
+    />
+  </g>
+
+  <!-- Teal circle segment (flat left edge) -->
+  <g clip-path="url(#clipTealSegment)">
+    <circle cx="70" cy="60" r="36" fill="#19F5C3" />
+  </g>
+</svg>

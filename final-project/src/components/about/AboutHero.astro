@@ -1,0 +1,129 @@
+---
+import aboutCar from "/aboutCar.jpg";
+
+const data = [
+  {
+    h3: "Our Mission",
+    p: "At Ddsgnr Auto Repair, our mission is to provide our customers with the highest level of car care and customer service.",
+  },
+  {
+    h3: "Our Expertise",
+    p: "At Ddsgnr Auto Repair, our technicians are the heart and soul of our business. With years of experience and training.",
+  },
+  {
+    h3: "Our Equipment",
+    p: "At Ddsgnr Auto Repair, our technicians are the heart and soul of our business. With years of experience and training.",
+  },
+  {
+    h3: "Our Customer Promise",
+    p: "At Ddsgnr Auto Repair, our mission is to provide our customers with the highest level of car care and customer service.",
+  },
+];
+---
+
+<section class="about">
+  <div class="content">
+    <h1>About Us</h1>
+
+    <div class="features">
+      {data.map((item) => (
+        <div class="feature">
+          <h3>{item.h3}</h3>
+          <p>{item.p}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="actions">
+      <button class="primary">Book Your Appointment Now</button>
+      <a href="#">Learn more →</a>
+    </div>
+  </div>
+
+  <div class="image-wrapper">
+    <img src="/aboutCar.jpg" alt="Car on road" />
+    <span class="play">▶</span>
+  </div>
+</section>
+
+
+<style>
+.about {
+  font-family: "Roboto", system-ui, sans-serif;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 4rem;
+  padding: 5rem 6rem;
+  align-items: center;
+  background: #fff;
+}
+
+.content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem 3rem;
+  margin-bottom: 2.5rem;
+}
+
+.feature h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.feature p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #555;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.primary {
+  padding: 0.9rem 1.5rem;
+  border: 1px solid #000;
+  background: transparent;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.actions a {
+  text-decoration: none;
+  color: #000;
+  font-weight: 500;
+}
+
+.image-wrapper {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.image-wrapper img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.play {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 64px;
+  height: 64px;
+  background: #fff;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+</style>
