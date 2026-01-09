@@ -18,9 +18,16 @@
 
     <div class="main-bar">
         <div class="logo">
-        <img src="/src/assets/logo-mark.svg" alt="Ddsgnr logo" style="height:40px;" />
-        <span class="logo-text bold">Ddsngr</span>
+            <img src="/src/assets/logo-mark.svg" alt="Ddsgnr logo" style="height:40px;" />
+            <span class="logo-text bold">Ddsngr</span>
         </div>
+
+        <input type="checkbox" id="menu-toggle" />
+        <label for="menu-toggle" class="burger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
 
         <div class="right-side">
             <nav class="nav">
@@ -39,6 +46,24 @@
 </header>
 
 <style>
+    #menu-toggle {
+        display: none;
+    }
+
+    .burger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+    }
+    .burger span {
+        width: 24px;
+        height: 2.5px;
+        background: #000;
+        border-radius: 2px;
+        transition: 0.3s ease;
+    }
+
     .header-container {
         display: flex;
         justify-content: center;
@@ -74,6 +99,7 @@
     }
 
     .main-bar {
+        position: relative;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -122,4 +148,64 @@
         align-items: center;
         gap: 0.5rem;
   }
+
+  @media (max-width: 900px) {
+  .top-bar {
+    display: none;
+  }
+
+  .burger {
+    display: flex;
+  }
+
+  .right-side {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #fff;
+
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 2rem 0;
+
+    border-top: 1px solid #eee;
+
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-10px);
+    transition: 0.3s ease;
+  }
+
+  .nav {
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  .cta {
+    width: 85%;
+    text-align: center;
+  }
+
+  /* OPEN MENU */
+  #menu-toggle:checked ~ .right-side {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  /* BURGER → X */
+  #menu-toggle:checked + .burger span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  #menu-toggle:checked + .burger span:nth-child(2) {
+    opacity: 0;
+  }
+
+  #menu-toggle:checked + .burger span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+}
 </style>

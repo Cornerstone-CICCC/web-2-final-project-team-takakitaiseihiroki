@@ -9,11 +9,22 @@ import Bottom from "../components/home/Bottom.astro"
 ---
 
 <Layout title="Home">
-  <Hero />
-  <AboutHero />
-  <Mission />
+  <div class="container">
+    <Hero />
+    <AboutHero />
+    <Mission />
 
-  <Team />
-  <Faq />
-  <Bottom />
+    <Team />
+    <Faq />
+    <Bottom />
+  </div>
 </Layout>
+
+<style>
+    .container {
+      display: flex;
+      flex-direction: column;
+      justfiy-content: center;
+      align-items: center;
+    }
+</style>
