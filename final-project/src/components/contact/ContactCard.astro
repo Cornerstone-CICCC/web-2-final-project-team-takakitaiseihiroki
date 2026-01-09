@@ -1,0 +1,75 @@
+---
+import emailIcon from '../../assets/email.svg';
+import chatIcon from '../../assets/livechat.svg';
+import phoneIcon from '../../assets/phone.svg';
+import pinIcon from '../../assets/pin.svg';
+/**
+ * ContactCard Component
+ */
+
+interface Props {
+  icon: 'email' | 'chat' | 'phone' | 'location';
+  title: string;
+  description: string;
+  linkText: string;
+  linkHref: string;
+}
+
+const { icon, title, description, linkText, linkHref } = Astro.props;
+
+const icons = {
+  email: emailIcon.src,
+  chat: chatIcon.src,
+  phone: phoneIcon.src,
+  location: pinIcon.src
+};
+---
+
+<div class="contact-card">
+  <img src={icons[icon]} alt="" class="contact-card__icon" width="48" height="48" />
+  <h3 class="contact-card__title">{title}</h3>
+  <p class="contact-card__description">{description}</p>
+  <a href={linkHref} class="contact-card__link">{linkText}</a>
+</div>
+
+<style lang="scss">
+  @use '../../styles/variables' as *;
+  @use '../../styles/mixins' as *;
+
+  .contact-card {
+    @include flex-column;
+    gap: $spacing-md;
+
+    &__icon {
+      width: 32px;
+      height: 32px;
+      color: $color-primary;
+    }
+
+    &__title {
+      font-size: $font-size-lg;
+      font-weight: $font-weight-semibold;
+      color: $color-primary;
+      margin: 0;
+
+      @include md {
+        font-size: $font-size-xl;
+      }
+    }
+
+    &__description {
+      @include body-text;
+      margin: 0;
+      flex-grow: 1;
+    }
+
+    &__link {
+      @include link-underline;
+      font-size: $font-size-sm;
+
+      @include md {
+        font-size: $font-size-base;
+      }
+    }
+  }
+</style>

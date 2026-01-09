@@ -1,0 +1,151 @@
+---
+/**
+ * ContactHero Component
+ */
+import ContactCard from './ContactCard.astro';
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  email?: {
+    address: string;
+    description?: string;
+  };
+  chat?: {
+    linkText?: string;
+    description?: string;
+  };
+  phone?: {
+    number: string;
+    description?: string;
+  };
+  office?: {
+    address: string;
+    description?: string;
+  };
+}
+
+const {
+  title = 'Contact us',
+  subtitle = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+  email = {
+    address: 'hello@Ddsgnr.io',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in ero.'
+  },
+  chat = {
+    linkText: 'Start new chat',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in ero.'
+  },
+  phone = {
+    number: '+1 (555) 000-0000',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in ero.'
+  },
+  office = {
+    address: '123 Sample St, Sydney NSW 2000 AU',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in ero.'
+  }
+} = Astro.props;
+---
+
+<section class="contact-hero">
+  <div class="contact-hero__container">
+    <div class="contact-hero__header">
+      <h1 class="contact-hero__title">{title}</h1>
+      <p class="contact-hero__subtitle">{subtitle}</p>
+    </div>
+    
+    <div class="contact-hero__cards">
+      <ContactCard
+        icon="email"
+        title="Email"
+        description={email.description || ''}
+        linkText={email.address}
+        linkHref={`mailto:${email.address}`}
+      />
+      
+      <ContactCard
+        icon="chat"
+        title="Live chat"
+        description={chat.description || ''}
+        linkText={chat.linkText || 'Start new chat'}
+        linkHref="#chat"
+      />
+      
+      <ContactCard
+        icon="phone"
+        title="Phone"
+        description={phone.description || ''}
+        linkText={phone.number}
+        linkHref={`tel:${phone.number.replace(/\s/g, '')}`}
+      />
+      
+      <ContactCard
+        icon="location"
+        title="Office"
+        description={office.description || ''}
+        linkText={office.address}
+        linkHref={`https://maps.google.com/?q=${encodeURIComponent(office.address)}`}
+      />
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  @use '../../styles/variables' as *;
+  @use '../../styles/mixins' as *;
+
+  .contact-hero {
+    padding: $spacing-xl 0;
+    background-color: $color-white;
+
+    @include md {
+      padding: $spacing-2xl 0;
+    }
+
+    &__container {
+      @include container;
+    }
+
+    &__header {
+      text-align: left;
+      margin-bottom: $spacing-2xl;
+
+      @include md {
+        text-align: center;
+        margin-bottom: $spacing-3xl;
+      }
+    }
+
+    &__title {
+      @include heading-1;
+      margin: 0 0 $spacing-md;
+    }
+
+    &__subtitle {
+      @include body-text;
+      margin: 0;
+
+      @include md {
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+
+    &__cards {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: $spacing-2xl;
+
+      @include md {
+        grid-template-columns: repeat(2, 1fr);
+        gap: $spacing-xl;
+      }
+
+      @include lg {
+        grid-template-columns: repeat(4, 1fr);
+        gap: $spacing-xl;
+      }
+    }
+  }
+</style>

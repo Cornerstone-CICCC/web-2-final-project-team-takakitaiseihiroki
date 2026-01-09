@@ -1,0 +1,84 @@
+---
+/**
+ * ContactUs Component
+ */
+import ContactHero from './ContactHero.astro';
+import ContactForm from './ContactForm.astro';
+
+interface Props {
+  // Hero Section
+  heroTitle?: string;
+  heroSubtitle?: string;
+  email?: {
+    address: string;
+    description?: string;
+  };
+  chat?: {
+    linkText?: string;
+    description?: string;
+  };
+  phone?: {
+    number: string;
+    description?: string;
+  };
+  office?: {
+    address: string;
+    description?: string;
+  };
+  
+  // Form Section
+  formTagline?: string;
+  formTitle?: string;
+  formDescription?: string;
+  formImageAlt?: string;
+  services?: string[];
+  termsUrl?: string;
+  formspreeId: string;
+}
+
+const {
+  // Hero props
+  heroTitle,
+  heroSubtitle,
+  email,
+  chat,
+  phone,
+  office,
+  
+  // Form props
+  formTagline,
+  formTitle,
+  formDescription,
+  formImageAlt,
+  services,
+  termsUrl,
+  formspreeId
+} = Astro.props;
+---
+
+<div class="contact-us">
+  <ContactHero
+    title={heroTitle}
+    subtitle={heroSubtitle}
+    email={email}
+    chat={chat}
+    phone={phone}
+    office={office}
+  />
+  
+  <ContactForm
+    tagline={formTagline}
+    title={formTitle}
+    description={formDescription}
+    imageAlt={formImageAlt}
+    services={services}
+    termsUrl={termsUrl}
+    formspreeId={formspreeId}
+  />
+</div>
+
+<style lang="scss">
+  .contact-us {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+</style>
