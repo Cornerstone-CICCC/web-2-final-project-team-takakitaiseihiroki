@@ -1,0 +1,14 @@
+---
+/**
+ * Contact Us Page
+ * /contact
+ * 
+ */
+import ContactUs from '../components/contact/ContactUs.astro';
+import Layout from '../layouts/Layout.astro';
+import { FORMSPREE_ID, contactData } from '../data/contact';
+
+---
+<Layout title="Contact Us">
+  <ContactUs {...contactData} formspreeId={FORMSPREE_ID} />
+</Layout>

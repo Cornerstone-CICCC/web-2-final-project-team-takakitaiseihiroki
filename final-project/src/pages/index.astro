@@ -6,6 +6,8 @@ import Mission from "../components/about/Mission.astro"
 import Team from "../components/home/Team.astro"
 import Faq from "../components/home/Faq.astro"
 import Bottom from "../components/home/Bottom.astro"
+import ContactUs from "../components/contact/ContactUs.astro";
+import { FORMSPREE_ID, contactData } from '../data/contact';
 ---
 
 <Layout title="Home">
@@ -13,7 +15,7 @@ import Bottom from "../components/home/Bottom.astro"
     <Hero />
     <AboutHero />
     <Mission />
-
+    <ContactUs {...contactData} formspreeId={FORMSPREE_ID} />
     <Team />
     <Faq />
     <Bottom />
