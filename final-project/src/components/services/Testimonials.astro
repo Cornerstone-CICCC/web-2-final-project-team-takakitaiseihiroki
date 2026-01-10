@@ -70,7 +70,13 @@ const testimonials = [
       <button class="nav next" id="nextBtn" aria-label="Next review">→</button>
     </div>
 
-    <div class="dots" id="dots"></div>
+    <div class="dots">
+      <button class="dot" data-index="0" type="button"></button>
+      <button class="dot" data-index="1" type="button"></button>
+      <button class="dot" data-index="2" type="button"></button>
+      <button class="dot" data-index="3" type="button"></button>
+      <button class="dot" data-index="4" type="button"></button>
+    </div>
   </div>
 </section>
 
@@ -78,13 +84,13 @@ const testimonials = [
   const track = document.getElementById("testimonialTrack");
   const prev = document.getElementById("prevBtn");
   const next = document.getElementById("nextBtn");
-  const dotsWrap = document.getElementById("dots");
+  const dots = Array.from(document.querySelectorAll(".dot")) as HTMLElement[];
 
   if (
     track instanceof HTMLElement &&
     prev instanceof HTMLElement &&
     next instanceof HTMLElement &&
-    dotsWrap instanceof HTMLElement
+    dots.length > 0
   ) {
     const trackEl = track;
     const cards = Array.from(trackEl.children);
@@ -96,25 +102,22 @@ const testimonials = [
       if (newVisible !== visible) {
         visible = newVisible;
         index = Math.min(index, Math.max(cards.length - visible, 0));
-        createDots();
+        updateDots();
         render();
       }
     };
 
-    const createDots = () => {
-      dotsWrap.innerHTML = "";
-      const count = Math.max(cards.length - visible + 1, 1);
-      for (let i = 0; i < count; i++) {
-        const dot = document.createElement("button");
-        dot.className = "dot";
-        dot.type = "button";
-        if (i === index) dot.classList.add("active");
-        dot.addEventListener("click", () => {
-          index = i;
+    const updateDots = () => {
+      const maxIndex = Math.max(cards.length - visible, 0);
+      dots.forEach((dot) => {
+        const dotIndex = Number(dot.dataset.index || 0);
+        dot.classList.toggle("active", dotIndex === index);
+        dot.onclick = () => {
+          index = Math.min(dotIndex, maxIndex);
+          updateDots();
           render();
-        });
-        dotsWrap.appendChild(dot);
-      }
+        };
+      });
     };
 
     const render = () => {
@@ -123,7 +126,7 @@ const testimonials = [
       const gap = parseFloat(computedStyle.columnGap || "0");
       const offset = (cardWidth + gap) * index;
       trackEl.style.transform = `translateX(-${offset}px)`;
-      Array.from(dotsWrap.children).forEach((dot, i) => {
+      dots.forEach((dot, i) => {
         dot.classList.toggle("active", i === index);
       });
     };
@@ -139,14 +142,14 @@ const testimonials = [
       render();
     };
 
-    createDots();
+    updateDots();
     render();
 
     prev.addEventListener("click", goPrev);
     next.addEventListener("click", goNext);
     window.addEventListener("resize", () => {
       updateVisible();
-      createDots();
+      updateDots();
       render();
     });
   }
@@ -317,6 +320,8 @@ const testimonials = [
   }
 
   .dot {
+    width: 7px;
+    height: 7px;
     border-radius: 100%;
     border: none;
     background: #c2c2c2;
@@ -348,10 +353,17 @@ const testimonials = [
       column-gap: 0.85rem;
     }
 
-    .nav {
-      display: none;
+    .nav.prev {
+      left: 0.2rem;
+      transform: translateX(-24px);
+      z-index: 10;
     }
 
+    .nav.next {
+      right: 0.2rem;
+      transform: translateX(24px);
+      z-index: 10;
+    }
     .card {
       min-height: 195px;
     }
