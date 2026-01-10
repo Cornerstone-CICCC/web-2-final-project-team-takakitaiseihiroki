@@ -31,7 +31,7 @@
 }
 
 @mixin xxl {
-  @media (min-width: $breakpoint-2xl) {
+  @media (min-width: $breakpoint-3xl) {
     @content;
   }
 }
@@ -66,6 +66,10 @@
   @include lg {
     padding-left: $container-padding-lg;
     padding-right: $container-padding-lg;
+  }
+
+  @include xxl {
+    max-width: 1600px;
   }
 }
 
