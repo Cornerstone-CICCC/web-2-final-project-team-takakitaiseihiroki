@@ -30,10 +30,6 @@ const testimonials = [
     <p class="lead">Check reviews from our clients</p>
 
     <div class="slider">
-      <button class="nav prev" id="prevBtn" aria-label="Previous review"
-        >←</button
-      >
-
       <div class="viewport">
         <div class="track" id="testimonialTrack">
           {
@@ -67,15 +63,24 @@ const testimonials = [
         </div>
       </div>
 
-      <button class="nav next" id="nextBtn" aria-label="Next review">→</button>
-    </div>
+      <div class="controls">
+        <div class="dots">
+          <button class="dot" data-index="0" type="button"></button>
+          <button class="dot" data-index="1" type="button"></button>
+          <button class="dot" data-index="2" type="button"></button>
+          <button class="dot" data-index="3" type="button"></button>
+          <button class="dot" data-index="4" type="button"></button>
+        </div>
 
-    <div class="dots">
-      <button class="dot" data-index="0" type="button"></button>
-      <button class="dot" data-index="1" type="button"></button>
-      <button class="dot" data-index="2" type="button"></button>
-      <button class="dot" data-index="3" type="button"></button>
-      <button class="dot" data-index="4" type="button"></button>
+        <div class="nav-group">
+          <button class="nav prev" id="prevBtn" aria-label="Previous review">
+            ←
+          </button>
+          <button class="nav next" id="nextBtn" aria-label="Next review">
+            →
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -312,11 +317,21 @@ const testimonials = [
     z-index: 10;
   }
 
+  .controls {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 0.9rem;
+  }
+
+  .nav-group {
+    display: flex;
+  }
+
   .dots {
     display: flex;
     gap: 0.25rem;
     justify-content: center;
-    margin-top: 0.9rem;
   }
 
   .dot {
@@ -361,11 +376,27 @@ const testimonials = [
 
     .nav.next {
       right: 0.2rem;
-      transform: translateX(24px);
+
       z-index: 10;
     }
     .card {
       min-height: 195px;
+    }
+
+    .controls {
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 0.65rem;
+      padding: 0 0.1rem;
+    }
+
+    .dots {
+      justify-content: flex-start;
+    }
+
+    .nav {
+      position: static;
+      transform: none;
     }
   }
 </style>
