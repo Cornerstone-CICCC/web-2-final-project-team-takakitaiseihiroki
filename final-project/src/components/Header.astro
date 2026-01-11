@@ -2,10 +2,10 @@
   <div class="header">
     <div class="top-bar">
         <div class="top-left">
-        <p class="bold">For emergency cases: <span class="underline">800 123 45 67 </span></p>
-        <p>Location: 121 Wallstreet Street, NY, USA</p>
-        <p>Open hours: 9:00–24:00 Mon–Sat</p>
-        <p>Email: info@ddsngr.com</p>
+            <p class="bold">For emergency cases: <span class="underline">800 123 45 67 </span></p>
+            <p>Location: 121 Wallstreet Street, NY, USA</p>
+            <p>Open hours: 9:00–24:00 Mon–Sat</p>
+            <p>Email: info@ddsngr.com</p>
         </div>
 
         <div class="top-right">
@@ -42,7 +42,7 @@
             </a>
         </div>
     </div>
-    </div>
+  </div>
 </header>
 
 <style>
@@ -71,8 +71,9 @@
     }
     .header {
         font-family: roboto, system-ui, sans-serif;
-        width: 95%;
-        margin-bottom: 1rem
+        width: 100%;
+        margin-bottom: 1rem;
+        z-index: 1000;
     }
     .bold {
         font-weight: 500
@@ -86,9 +87,11 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        font-size: 0.8rem;
+        font-size: 0.9rem;
         border-bottom: 1px solid #ddd;
         padding-bottom: 1rem;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem
     }
 
     .top-left {
@@ -164,6 +167,7 @@
     left: 0;
     width: 100%;
     background: #fff;
+    z-index: 999;
 
     flex-direction: column;
     align-items: center;
