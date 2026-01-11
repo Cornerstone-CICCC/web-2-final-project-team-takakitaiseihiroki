@@ -1,0 +1,24 @@
+---
+import Layout from "../layouts/Layout.astro";
+import LogoSection from "../components/services/LogoSection.astro";
+import ServiceGrid from "../components/services/ServiceGrid.astro";
+import Testimonials from "../components/services/Testimonials.astro";
+---
+
+<Layout title="Services">
+  <main class="page">
+    <LogoSection />
+    <ServiceGrid />
+    <Testimonials />
+  </main>
+</Layout>
+
+<style>
+  .page {
+    font-family: "Roboto", system-ui, sans-serif;
+    background: #f5f5f5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+</style>
