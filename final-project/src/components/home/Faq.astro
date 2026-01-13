@@ -1,10 +1,10 @@
 ---
 const questions = [
-    "Question text goes here",
-    "Question text goes here",
-    "Question text goes here",
-    "Question text goes here",
-    "Question text goes here",
+    {q:"Question text goes here", a: "Gibberish Answers: jfawjoiwjfwoijfwiejfwenfwoejfiwejfoiwjwfiojfowi"},
+    {q:"Question text goes here", a: "Gibberish Answers: jfawjoiwjfwoijfwiejfwenfwoejfiwejfoiwjwfiojfowi"},
+    {q:"Question text goes here", a: "Gibberish Answers: jfawjoiwjfwoijfwiejfwenfwoejfiwejfoiwjwfiojfowi"},
+    {q:"Question text goes here", a: "Gibberish Answers: jfawjoiwjfwoijfwiejfwenfwoejfiwejfoiwjwfiojfowi"},
+    {q:"Question text goes here", a: "Gibberish Answers: jfawjoiwjfwoijfwiejfwenfwoejfiwejfoiwjwfiojfowi"},
 ]
 ---
 
@@ -17,15 +17,23 @@ const questions = [
 
         <div class="questions">
             {questions.map((question) => {
-                return <div class="qa-box">
-                       <p>{question}</p>
-                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            aria-hidden="true">
-                            <path d="M12 5v14M5 12h14"/>
-                        </svg>
+                return (
+                    <div class="qa-box">
+                            <button class="qa-header" type="button">
+                                <p>{question.q}</p>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                        aria-hidden="true">
+                                        <path d="M12 5v14M5 12h14"/>
+                                </svg>
+                            </button>
+
+                            <div class="qa-answer">
+                                 <p>{question.a}</p>
+                            </div>
                     </div>
+                    )
             })}
         </div>
 
@@ -71,16 +79,45 @@ const questions = [
     .qa-box {
         display: flex;
         justify-content: space-between;
-        border: 1px solid black;
         padding: 0.5rem 1rem;
+        align-items:flex-start;
+        flex-direction: column;
+    }
+
+    .qa-header {
+        display: flex;
+        justify-content: space-between;
         align-items: center;
-        
+        width: 100%;
+        background: none;
+        border: 1px solid black;
+        padding: 1rem;
+        padding: 0.75rem 1rem;
+        cursor: pointer;
+    }
+
+    .qa-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        padding: 0 1rem;
+        text-align: left;
+        padding: 0 1rem;
+        border-left: 1px solid black;
+        border-right: 1px solid black;
+        border-bottom: 1px solid black;
+    }
+
+    .qa-box.open .qa-answer {
+        max-height: 200px; 
+        padding-bottom: 1rem;
     }
 
     .qa-box p {
         font-weight: 500;
     }
-    
+
+
     .followup {
         display: flex;
         flex-direction: column;
@@ -105,12 +142,12 @@ const questions = [
         padding: 0.8rem;
         border-radius: 4px;
         width: 20%;
-        display: inline-flex;      /* ← key */
-        align-items: center;       /* ← vertical centering */
-        justify-content: center;   /* ← horizontal centering */
+        display: inline-flex;  
+        align-items: center;   
+        justify-content: center;  
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 640px) {
         
         .title p {
             text-align: left;
@@ -127,3 +164,12 @@ const questions = [
     }
 
 </style>
+
+<script>
+  document.querySelectorAll(".qa-header").forEach((button) => {
+    button.addEventListener("click", () => {
+      const qaBox = button.closest(".qa-box");
+      qaBox.classList.toggle("open");
+    });
+  });
+</script>

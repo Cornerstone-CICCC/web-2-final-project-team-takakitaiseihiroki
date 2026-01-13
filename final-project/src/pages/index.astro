@@ -8,6 +8,9 @@ import Faq from "../components/home/Faq.astro"
 import Bottom from "../components/home/Bottom.astro"
 import ContactUs from "../components/contact/ContactUs.astro";
 import { FORMSPREE_ID, contactData } from '../data/contact';
+import LogoSection from "../components/services/LogoSection.astro";
+import ServiceGrid from "../components/services/ServiceGrid.astro";
+import Testimonials from "../components/services/Testimonials.astro";
 ---
 
 <Layout title="Home">
@@ -15,8 +18,11 @@ import { FORMSPREE_ID, contactData } from '../data/contact';
     <Hero />
     <AboutHero />
     <Mission />
+    <LogoSection />
+    <ServiceGrid />
     <ContactUs {...contactData} formspreeId={FORMSPREE_ID} />
     <Team />
+    <Testimonials />
     <Faq />
     <Bottom />
   </div>
